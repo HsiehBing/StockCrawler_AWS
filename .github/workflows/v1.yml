@@ -39,6 +39,6 @@ jobs:
           envs: GITHUB_SHA
           script: |
             sudo su -
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+            docker pull hsiehbing/clockbox:latest
        
 
