@@ -38,7 +38,6 @@ jobs:
           key: ${{secrets.ACTION_PRIVATE_KEY}}
           envs: GITHUB_SHA
           script: |
-            sudo su -
-            docker pull hsiehbing/clockbox:latest
+            sudo docker pull hsiehbing/clockbox:latest
        
 
