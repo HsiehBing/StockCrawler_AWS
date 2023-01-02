@@ -39,5 +39,4 @@ jobs:
           envs: GITHUB_SHA
           script: | 
             docker login
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
 
