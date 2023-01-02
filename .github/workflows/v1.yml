@@ -38,6 +38,7 @@ jobs:
           key: ${{secrets.ACTION_PRIVATE_KEY}}
           envs: GITHUB_SHA
           script: |
+            sudo su -
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
        
 
