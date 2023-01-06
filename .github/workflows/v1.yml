@@ -39,5 +39,8 @@ jobs:
           envs: GITHUB_SHA
           script: |
             sudo docker pull hsiehbing/clockbox:latest
+            sudo docker kill test1
+            sudo docker rm test1
+            sudo docker run -d --name test1 -p 443:443 hsiehbing/clockbox:latest
        
 
