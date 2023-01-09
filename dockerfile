@@ -1,4 +1,4 @@
-FROM python:3.6.8
+FROM python:3.8-slim
 
 RUN apt-get update
 RUN apt-get install -y nginx
@@ -16,7 +16,6 @@ COPY ./stockcrawler/.fonts/SimHei.ttf /usr/share/fonts/SimHei.ttf
 
 WORKDIR /app
 COPY ./stockcrawler/* /app/
-RUN apt-get install -y nano
 RUN apt-get install -y vim
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
