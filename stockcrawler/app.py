@@ -107,7 +107,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
         
     elif '~' in msg[0]:
-        message = TextSendMessage(text="測試#為查詢股價(還有TSE,OTC,小台1,小台2)\nP台股當日走勢,\n C當前匯率 F台股個當日買賣超,\nE盤後法人 K-K線\nV虛擬貨幣價格,\n*為120日內走勢,**為30日內走勢,\n目前台股可以輸入代號或名稱，美股大小寫都可以\n ETSE EFB EFS EDB EDS\n UpDate")
+        message = TextSendMessage(text="測試#為查詢股價(還有TSE,OTC,小台1,小台2)\nP台股當日走勢,\n C當前匯率 F台股個當日買賣超,\nE盤後法人 K-K線\nV虛擬貨幣價格,\n*為120日內走勢,**為30日內走勢,\n目前台股不可以輸入代號或名稱，美股大小寫都可以\n ETSE EFB EFS EDB EDS\n UpDate")
         line_bot_api.reply_message(event.reply_token, message)#
 
 

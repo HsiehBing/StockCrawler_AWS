@@ -29,7 +29,7 @@ def Currency(msg):
     #plt.rcParams['font.family'] = font #AR PL UKai CN
     plt.rcParams['axes.unicode_minus'] = False  
 
-    plt.plot(rate['掛牌月期'], rate['即期-買入'], label=f'即期-買入{rate.iloc[0][4]}', color = 'red')
+    plt.plot(rate['掛牌日期'], rate['即期-買入'], label=f'即期-買入{rate.iloc[0][4]}', color = 'red')
     plt.plot(rate['掛牌日期'], rate['即期-賣出'], label=f'即期-賣出{rate.iloc[0][5]}', color =  'blue')
     plt.ylabel("price", size= 20 )
     plt.xlabel("date", size= 20)
