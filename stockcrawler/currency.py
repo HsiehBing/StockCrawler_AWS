@@ -19,7 +19,7 @@ def Currency(msg):
 #    font="WenQuanYi Micro Hei"
 #    font="SimHei"
     
-    rate.columns = ['掛牌月期', '幣別','現金-買入','現金-賣出','即期-買入','即期-賣出']
+    rate.columns = ['掛牌日期', '幣別','現金-買入','現金-賣出','即期-買入','即期-賣出']
     rate['掛牌日期'] = pandas.to_datetime(rate['掛牌日期'], format = '%Y/%m/%d')
     
     
