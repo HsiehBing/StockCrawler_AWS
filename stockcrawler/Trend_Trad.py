@@ -6,14 +6,13 @@ import pickle
 import re
 def sTrendTrad(msg):
 
-    a_file = open("r_Input.pkl", 'rb')
+    a_file = open("Input.pkl", 'rb')
     Input = pickle.load(a_file)
     a_file.close()
-    msg = Input[msg[1:]]
-    StockNum = msg
+    StockNum = Input[msg[1:]]
 
-    a_file = open("r_Output.pkl", 'rb')
-    Output = pickle.load(a_file)
+    a_file2 = open("Output.pkl", 'rb')
+    Output = pickle.load(a_file2)
     a_file.close()
     StockNameE = Output[StockNum]
 
