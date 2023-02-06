@@ -143,24 +143,24 @@ def finainces(msg):
         StockName = msg[1:].upper()
         StockNameE = msg[1:].upper()
         up_down=''
-	url = f'https://tw.stock.yahoo.com/quote/{StockName}'
-	web = requests.get(url)
-	soup = BeautifulSoup(web.text, "html.parser")
-	Current_Price = soup.select('.Fz\(32px\)')[0]
-	Price_Gap = soup.select('.Fz\(20px\)')[1]
-	Change_Rate = soup.select('.Fz\(20px\)')[2]
-	try:
+        url= f'https://tw.stock.yahoo.com/quote/{StockName}'
+        web = requests.get(url)
+        soup = BeautifulSoup(web.text, "html.parser")
+        Current_Price = soup.select('.Fz\(32px\)')[0]
+        Price_Gap = soup.select('.Fz\(20px\)')[1]
+        Change_Rate = soup.select('.Fz\(20px\)')[2]
+        try:
         # 如果 main-0-QuoteHeader-Proxy id 的 div 裡有 C($c-trend-down) 的 class
         # 表示狀態為下跌
-        if soup.select('#main-0-QuoteHeader-Proxy')[0].select('.C\(\$c-trend-down\)')[0]:
+          if soup.select('#main-0-QuoteHeader-Proxy')[0].select('.C\(\$c-trend-down\)')[0]:
             up_down = '跌'
-    except:
-        try:
+        except:
+          try:
             # 如果 main-0-QuoteHeader-Proxy id 的 div 裡有 C($c-trend-up) 的 class
             # 表示狀態為上漲
-            if soup.select('#main-0-QuoteHeader-Proxy')[0].select('.C\(\$c-trend-up\)')[0]:
+              if soup.select('#main-0-QuoteHeader-Proxy')[0].select('.C\(\$c-trend-up\)')[0]:
                 up_down = '漲'
-        except:
+          except:
             # 如果都沒有包含，表示平盤
             up_down = '平盤'
             
