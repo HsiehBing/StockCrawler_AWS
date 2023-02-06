@@ -164,7 +164,7 @@ def finainces(msg):
             # 如果都沒有包含，表示平盤
             up_down = '平盤'
             
-        final_part=str(f"{HMS} {StockNameE} 股價:{Current_Price}, {up_down}{Price_Gap}({Change_Rate}%)")
+        final_part=str(f"{HMS} {StockNameE} 股價:{Current_Price.get_text(strip_True)}, {up_down}{Price_Gap.get_text(strip_True)}{Change_Rate.get_text(strip_True)}")
         
         return final_part
     
