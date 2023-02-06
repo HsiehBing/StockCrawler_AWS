@@ -1,5 +1,4 @@
 #代號#
-import yfinance as yf
 import time
 import datetime
 import pickle
@@ -141,29 +140,31 @@ def finainces(msg):
     #時間
         localtime= str((datetime.datetime.now()) + datetime.timedelta(hours = 8))
         HMS= (localtime[11:19]) 
-        StockName = msg[1:].lower()
+        StockName = msg[1:].upper()
         StockNameE = msg[1:].upper()
-        up_down=[]
-        Change_Rate = 0
-        Ticker = yf.Ticker(StockName)
-        Tiker2 = Ticker.info['regularMarketPrice']
-
-        Previous_Price = str(Ticker.info['previousClose'])
-        Current_Price0 = str(Ticker.info['regularMarketPrice'])
-        Current_Price = Current_Price0[:5]
-        Price_Gap00 = Ticker.info['regularMarketPrice']-Ticker.info['previousClose']
-        Price_Gap0 = str(Price_Gap00)
-        Price_Gap = Price_Gap0[:5]
-        if Price_Gap00 >0:
-            up_down = '漲'
-        elif Price_Gap00 <0:
+        up_down=''
+	url = f'https://tw.stock.yaho.com/quote/{StockName}'
+	web = requests.get(url)
+	soup = BeautifulSoup(web.text, "html.parser")
+	Current_Price = soup.select('.Fz\(32px\))')[0]
+	Price_Gap = soup.select('.Fz\(20px\)')[1]
+	Change_Rate = soup.select('.Fz\(20px\)')[2]
+	try:
+        # 如果 main-0-QuoteHeader-Proxy id 的 div 裡有 C($c-trend-down) 的 class
+        # 表示狀態為下跌
+        if soup.select('#main-0-QuoteHeader-Proxy')[0].select('.C\(\$c-trend-down\)')[0]:
             up_down = '跌'
-        Change_Rate00 = (Ticker.info['regularMarketPrice']-Ticker.info['previousClose'])/ Ticker.info['previousClose']*100
-        Change_Rate = round(float(Change_Rate00),2)
-
-        
-        
-        final_part=str(f"{HMS} {StockNameE} 股價:{Current_Price0}, {up_down}{Price_Gap}({Change_Rate}%)")
+    except:
+        try:
+            # 如果 main-0-QuoteHeader-Proxy id 的 div 裡有 C($c-trend-up) 的 class
+            # 表示狀態為上漲
+            if soup.select('#main-0-QuoteHeader-Proxy')[0].select('.C\(\$c-trend-up\)')[0]:
+                up_down = '漲'
+        except:
+            # 如果都沒有包含，表示平盤
+            up_down = '平盤'
+            
+        final_part=str(f"{HMS} {StockNameE} 股價:{Current_Price}, {up_down}{Price_Gap}({Change_Rate}%)")
         
         return final_part
     
