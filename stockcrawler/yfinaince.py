@@ -143,10 +143,10 @@ def finainces(msg):
         StockName = msg[1:].upper()
         StockNameE = msg[1:].upper()
         up_down=''
-	url = f'https://tw.stock.yaho.com/quote/{StockName}'
+	url = f'https://tw.stock.yahoo.com/quote/{StockName}'
 	web = requests.get(url)
 	soup = BeautifulSoup(web.text, "html.parser")
-	Current_Price = soup.select('.Fz\(32px\))')[0]
+	Current_Price = soup.select('.Fz\(32px\)')[0]
 	Price_Gap = soup.select('.Fz\(20px\)')[1]
 	Change_Rate = soup.select('.Fz\(20px\)')[2]
 	try:
@@ -164,7 +164,7 @@ def finainces(msg):
             # 如果都沒有包含，表示平盤
             up_down = '平盤'
             
-        final_part=str(f"{HMS} {StockNameE} 股價:{Current_Price.get_text(strip_True)}, {up_down}{Price_Gap.get_text(strip_True)}{Change_Rate.get_text(strip_True)}")
+        final_part=str(f"{HMS} {StockNameE} 股價:{Current_Price.get_text(strip=True)}, {up_down}{Price_Gap.get_text(strip=True)}{Change_Rate.get_text(strip=True)}")
         
         return final_part
     
