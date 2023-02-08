@@ -77,29 +77,29 @@ def handle_message(event):
     if '#' in msg[0]:
         message =TextSendMessage(finainces(msg)) 
         line_bot_api.reply_message(event.reply_token, message)
-    elif 'V' in msg[0]:
+    elif 'V' in msg[0] or 'v' in msg[0]:
         message =TextSendMessage(Vitual_Currency(msg)) 
         line_bot_api.reply_message(event.reply_token, message)
-    elif 'C' in msg[0]:
+    elif 'C' in msg[0] or 'c' in msg[0]:
         img_url = Currency(msg)
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))    
 
     elif '*' in msg[0]:
         img_url = glucose_graph(msg)
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
-    elif 'F' in msg[0]:
+    elif 'F' in msg[0] or 'f' in msg[0]:
         message =TextSendMessage(sTrendTrad(msg)) 
         line_bot_api.reply_message(event.reply_token, message)  
-    elif 'K' in msg[0]:
+    elif 'K' in msg[0] or 'k' in msg[0]:
         img_url = Draw_candle(msg)
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))              
     elif 'P' in msg[0] or 'p' in msg[0]:
         img_url = today_price(msg)
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
-    elif 'E' in msg[0]:
+    elif 'E' in msg[0] or 'e' in msg[0]:
         img_url = enddistr(msg)
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
-    elif 'T'in msg[0]:
+    elif 'T'in msg[0] or 't' in msg[0]:
         message =TextSendMessage(GETUserId(event)) 
         line_bot_api.reply_message(event.reply_token, message)
     elif 'UpDate'in msg:
