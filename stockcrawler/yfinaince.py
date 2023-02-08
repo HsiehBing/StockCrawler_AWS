@@ -143,6 +143,7 @@ def finainces(msg):
         StockName = msg[1:].upper()
         StockNameE = msg[1:].upper()
         up_down=''
+        up_down_sign=''
         url= f'https://tw.stock.yahoo.com/quote/{StockName}'
         web = requests.get(url)
         soup = BeautifulSoup(web.text, "html.parser")
@@ -154,17 +155,20 @@ def finainces(msg):
         # 表示狀態為下跌
           if soup.select('#main-0-QuoteHeader-Proxy')[0].select('.C\(\$c-trend-down\)')[0]:
             up_down = '跌'
+            up_down_sign='-'
         except:
           try:
             # 如果 main-0-QuoteHeader-Proxy id 的 div 裡有 C($c-trend-up) 的 class
             # 表示狀態為上漲
               if soup.select('#main-0-QuoteHeader-Proxy')[0].select('.C\(\$c-trend-up\)')[0]:
                 up_down = '漲'
+                up_down_sign='+'
           except:
             # 如果都沒有包含，表示平盤
             up_down = '平盤'
+            up_down_sign=''
             
-        final_part=str(f"{HMS} {StockNameE} 股價:{Current_Price.get_text(strip=True)}, {up_down}{Price_Gap.get_text(strip=True)}{Change_Rate.get_text(strip=True)}")
+        final_part=str(f"{HMS} {StockNameE} 股價:{Current_Price.get_text(strip=True)}, {up_down}{Price_Gap.get_text(strip=True)}({up_down_sign}{Change_Rate.get_text(strip=True)[1:-1]})")
         
         return final_part
     
