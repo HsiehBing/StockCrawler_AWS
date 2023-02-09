@@ -10,8 +10,8 @@ COPY test.conf /etc/nginx/conf.d/test.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
 COPY ssl-dhparams.pem /etc/letsencrypt/ssl-dhparams.pem
-COPY ./bingbot.hungtse.tw/fullchain.pem /etc/letsencrypt/live/bingbot.hsiehbing.com/fullchain.pem
-COPY ./bingbot.hungtse.tw/privkey.pem /etc/letsencrypt/live/bingbot.hsiehbing.com/privkey.pem
+COPY ./bingbot.hsiehbing.com/fullchain.pem /etc/letsencrypt/live/bingbot.hsiehbing.com/fullchain.pem
+COPY ./bingbot.hsiehbing.com/privkey.pem /etc/letsencrypt/live/bingbot.hsiehbing.com/privkey.pem
 COPY ./stockcrawler/.fonts/SimHei.ttf /usr/share/fonts/SimHei.ttf
 
 WORKDIR /app
