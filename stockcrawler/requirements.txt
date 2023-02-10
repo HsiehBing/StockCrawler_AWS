@@ -7,4 +7,4 @@ pyimgur
 bs4
 pandas
 mplfinance
-json
+
