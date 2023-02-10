@@ -74,8 +74,13 @@ def hello():
 def pushmessage_wd():
     reply_message=f'Good morning \n {get_weather("#臺南市")}\n \n{get_weather("#臺北市")}\n \n道瓊指數:{finainces("#%5EDJI")[19:]}\n \n費半指數:{finainces("#%5EIXIC")[20:]}'
     line_bot_api.push_message(MyID,TextSendMessage(reply_message))
-    return "Send message success"
+    return "Send morning message success"
 
+@app.route("/PmAh")
+def pushmessage_wd_Ah():
+    img_url = enddistr("ETSE")
+    line_bot_api.push_message(MyID,ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
+    return "Send after_hour image success"
 #########
 #處理訊息
 @handler.add(MessageEvent, message=TextMessage)
