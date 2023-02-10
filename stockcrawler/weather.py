@@ -19,7 +19,7 @@ def get_weather(msg):
         rain_prob = weather_elements[1]["time"][0]["parameter"]["parameterName"]
         min_tem = weather_elements[2]["time"][0]["parameter"]["parameterName"]
         max_tem = weather_elements[4]["time"][0]["parameter"]["parameterName"]
-        final_part =(f'{location}{start_time}-{end_time}  {weather_state} 降雨機率{rain_prob}% 最低溫 {min_tem}度 最高溫{max_tem}')
+        final_part =(f'{location}{start_time}-{end_time}  {weather_state} 降雨機率{rain_prob}% 最低溫 {min_tem}度 最高溫{max_tem}度')
         return final_part
 
 

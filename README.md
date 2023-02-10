@@ -169,3 +169,4 @@ WantBy =multi-user.target
 * 2023/2/9 change DNS server
 * 2023/2/9 新增README.md
 * 2023/2/10 add weather report
+* 2023/2/10 add push message
