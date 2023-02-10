@@ -74,7 +74,13 @@ def hello():
 def pushmessage_wd():
     reply_message=f'Good morning \n {get_weather("#臺南市")}\n \n{get_weather("#臺北市")}\n \n道瓊指數:{finainces("#%5EDJI")[19:]}\n \n費半指數:{finainces("#%5EIXIC")[20:]}'
     line_bot_api.push_message(MyID,TextSendMessage(reply_message))
-    return "Send morning message success"
+    return "Send weekday morning message success"
+
+@app.route("/PmWe")
+def pushmessage_we():
+    reply_message=f'Good morning \n {get_weather("#臺南市")}\n \n{get_weather("#臺北市")}'
+    line_bot_api.push_message(MyID,TextSendMessage(reply_message))
+    return "Send weekend morning message success"
 
 @app.route("/PmAh")
 def pushmessage_wd_Ah():
