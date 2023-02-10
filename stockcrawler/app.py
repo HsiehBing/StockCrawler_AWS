@@ -22,7 +22,7 @@ from candle import *
 from currency import *
 from update import *
 from GetUserId import *
-from get_weather import *
+from weather import *
 #======這裡是呼叫的檔案內容=====
 
 #======python的函數庫==========
