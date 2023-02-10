@@ -47,7 +47,7 @@ line_bot_api = LineBotApi('T5Zqw8jYWPqLTdpT46lz06Wbqm3RpDw3mrylWdKdV5YRUXqXw/I4B
 # Channel Secret
 handler = WebhookHandler('fb51bfd54e6dca9668655d34b92ebb71')
 MyID = "Ue451eae9392cbbed6c8cda5c47771f8f"
-
+JOJO = "Cf30bbe4bff5f3f1002aae698438b8699"
 
 #監聽所有來自 /callback 的 Post Request
 #######
@@ -73,19 +73,19 @@ def hello():
 @app.route("/PmWd")
 def pushmessage_wd():
     reply_message=f'Good morning \n {get_weather("#臺南市")}\n \n{get_weather("#臺北市")}\n \n道瓊指數:{finainces("#%5EDJI")[19:]}\n \n費半指數:{finainces("#%5EIXIC")[20:]}'
-    line_bot_api.push_message(MyID,TextSendMessage(reply_message))
+    line_bot_api.push_message(JOJO,TextSendMessage(reply_message))
     return "Send weekday morning message success"
 
 @app.route("/PmWe")
 def pushmessage_we():
     reply_message=f'Good morning \n {get_weather("#臺南市")}\n \n{get_weather("#臺北市")}'
-    line_bot_api.push_message(MyID,TextSendMessage(reply_message))
+    line_bot_api.push_message(JOJO,TextSendMessage(reply_message))
     return "Send weekend morning message success"
 
 @app.route("/PmAh")
 def pushmessage_wd_Ah():
     img_url = enddistr("ETSE")
-    line_bot_api.push_message(MyID,ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
+    line_bot_api.push_message(JOJO,ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
     return "Send after_hour image success"
 #########
 #處理訊息
