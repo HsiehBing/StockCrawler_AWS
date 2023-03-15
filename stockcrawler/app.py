@@ -23,6 +23,8 @@ from currency import *
 from update import *
 from GetUserId import *
 from weather import *
+from glo_weather import *
+from Investor_chip import *
 #======這裡是呼叫的檔案內容=====
 
 #======python的函數庫==========
@@ -37,6 +39,7 @@ import bs4
 import re
 import mplfinance
 import json
+import weathercom
 
 #======python的函數庫==========
 
@@ -48,6 +51,7 @@ line_bot_api = LineBotApi('T5Zqw8jYWPqLTdpT46lz06Wbqm3RpDw3mrylWdKdV5YRUXqXw/I4B
 handler = WebhookHandler('fb51bfd54e6dca9668655d34b92ebb71')
 MyID = "Ue451eae9392cbbed6c8cda5c47771f8f"
 JOJO = "Cf30bbe4bff5f3f1002aae698438b8699"
+YLinG ="C420c6fbc0d89e0bdc10f333f504458cf"
 
 #監聽所有來自 /callback 的 Post Request
 #######
@@ -72,10 +76,15 @@ def hello():
 #########
 @app.route("/PmWd")
 def pushmessage_wd():
-    reply_message=f'Good morning \n {get_weather("#臺南市")}\n \n{get_weather("#臺北市")}\n \n道瓊指數:{finainces("#%5EDJI")[19:]}\n \n費半指數:{finainces("#%5EIXIC")[20:]}'
+    reply_message=f'Good morning \n {get_weather("#臺南市")}\n \n{get_weather("#臺北市")}\n \n道瓊指數:{finainces("#%5EDJI")[19:]}\n \n費半指數:{finainces("#%5ESOX")[20:]}'
     line_bot_api.push_message(JOJO,TextSendMessage(reply_message))
     return "Send weekday morning message success"
 
+@app.route("/PmWd_YLin")
+def pushmessage_wd_YLin():
+    reply_message_YLinG=f'Good morning \n道瓊指數:{finainces("#%5EDJI")[19:]}\n \n費半指數:{finainces("#%5ESOX")[20:]}'
+    line_bot_api.push_message(YLinG,TextSendMessage(reply_message_YLinG))
+    return "Send weekday morning message to YLinG success"
 @app.route("/PmWe")
 def pushmessage_we():
     reply_message=f'Good morning \n {get_weather("#臺南市")}\n \n{get_weather("#臺北市")}'
@@ -85,7 +94,11 @@ def pushmessage_we():
 @app.route("/PmAh")
 def pushmessage_wd_Ah():
     img_url = enddistr("ETSE")
+    reply_message = f'{investor_chip("IE")}\n{investor_chip("ID")}\n{investor_chip("IA")}'
     line_bot_api.push_message(JOJO,ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
+    line_bot_api.push_message(YLinG,ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
+    
+#    line_bot_api.push_message(YLinG,TextSendMessage(reply_message))
     return "Send after_hour image success"
 #########
 #處理訊息
@@ -120,8 +133,14 @@ def handle_message(event):
     elif 'T' in msg[0] or 't' in msg[0]:
         message =TextSendMessage(GETUserId(event)) 
         line_bot_api.reply_message(event.reply_token, message)
-    elif 'W' in msg[0] or 'w' in msg[0]:
+    elif 'W' in msg[0] :
         message =TextSendMessage(get_weather(msg))
+        line_bot_api.reply_message(event.reply_token, message)
+    elif  'w' in msg[0]:
+        message =TextSendMessage(get_global_weather(msg))
+        line_bot_api.reply_message(event.reply_token, message)
+    elif  'I' in msg[0]:
+        message =TextSendMessage(investor_chip(msg))
         line_bot_api.reply_message(event.reply_token, message)
     elif 'UpDate'in msg:
         message =TextSendMessage(renew_data()) 
