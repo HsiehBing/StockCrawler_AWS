@@ -161,6 +161,12 @@ Restart = alway
 [Install]
 WantBy =multi-user.target
 ```
+
+## 待做事項
+* 嘗試serverless 
+1. 換到Lambda
+2. 用Api Gateway
+
 ## 更新日誌
 * 2023/2/3 update Trend_trad.py 
 * 2023/2/7 update yfinance.py
@@ -169,3 +175,4 @@ WantBy =multi-user.target
 * 2023/2/9 change DNS server
 * 2023/2/9 新增README.md
 * 2023/2/10 add weather report
+* 2023/5/14 新增待做事項
