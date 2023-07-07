@@ -40,7 +40,8 @@ def plottable(figsize,data,collabels,date_title,tbfs = 12,fp = 'SimHei'):
 def enddistr(msg):
     EFurl = 'https://www.twse.com.tw/fund/TWT38U?response=json&date=&_=1644690000895'
     EDurl = 'https://www.twse.com.tw/fund/TWT44U?response=json&date=&_=1644686322595'
-    ETurl = 'https://www.twse.com.tw/fund/BFI82U?response=json&dayDate=&weekDate=&monthDate=&type=day&_=1644411516792'
+    ETurl = 'https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&_=1679418043579'
+
 
     msgurldict = {'EF':EFurl,'ED':EDurl,'ET':ETurl}
     res = requests.get(msgurldict[msg[:2]])
