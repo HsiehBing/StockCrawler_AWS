@@ -103,7 +103,8 @@ def finainces(msg):
  #########################################################################################################################      
         
     #######    
-    if msg[1].encode('UTF-8').isalpha()==False :
+#    if msg[1].encode('UTF-8').isalpha()==False :
+    if (msg[1].encode('UTF-8').isalpha() or msg[1]==("%"))==False :    
         a_file = open("Input.pkl", 'rb')
         Input = pickle.load(a_file)
         a_file.close()
