@@ -38,6 +38,7 @@ import bs4
 import re
 import mplfinance
 import json
+import fear_and_greed
 
 #======python的函數庫==========
 
@@ -76,7 +77,8 @@ def hello():
 
 @app.route("/PmWd_YLin")
 def pushmessage_wd_YLin():
-    reply_message_YLinG=f'Good morning \n道瓊指數:{finainces("#%5EDJI")[19:]}\n \n費半指數:{finainces("#%5ESOX")[20:]}'
+    fear_and_greed = round(float(str(fear_and_greed.get())[21:25]))
+    reply_message_YLinG=f'Good morning \n道瓊指數:{finainces("#%5EDJI")[19:]} \n費半指數:{finainces("#%5ESOX")[20:]} \n Fear & Greed Index:{source}'
     line_bot_api.push_message(YLinG,TextSendMessage(reply_message_YLinG))
     return "Send weekday morning message to YLinG success"
 
