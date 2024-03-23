@@ -176,3 +176,4 @@ WantBy =multi-user.target
 * 2023/2/9 新增README.md
 * 2023/2/10 add weather report
 * 2023/5/14 新增待做事項
+* 2024/3/24 新增Fear & Greed
