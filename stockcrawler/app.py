@@ -23,6 +23,7 @@ from currency import *
 from update import *
 from GetUserId import *
 from weather import *
+from glo_weather import *
 #======這裡是呼叫的檔案內容=====
 
 #======python的函數庫==========
@@ -37,6 +38,7 @@ import bs4
 import re
 import mplfinance
 import json
+import fear_and_greed
 
 #======python的函數庫==========
 
@@ -46,7 +48,9 @@ static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 line_bot_api = LineBotApi('T5Zqw8jYWPqLTdpT46lz06Wbqm3RpDw3mrylWdKdV5YRUXqXw/I4BW1Mmp/M0VgK3kA5r4v/V9r4cH2/gH2PIM46uLoHraHb2DxW8EB8lrPT2GzH1YLgETJ8MDuomMwbeDhk/2T4CUM9RxXC3K1E3AdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
 handler = WebhookHandler('fb51bfd54e6dca9668655d34b92ebb71')
-
+MyID = "Ue451eae9392cbbed6c8cda5c47771f8f"
+JOJO = "Cf30bbe4bff5f3f1002aae698438b8699"
+YLinG ="C420c6fbc0d89e0bdc10f333f504458cf"
 
 
 #監聽所有來自 /callback 的 Post Request
@@ -69,6 +73,23 @@ def callback():
 @app.route("/")
 def hello():
     return "Hello Flask!"
+########
+
+@app.route("/PmWd_YLin")
+def pushmessage_wd_YLin():
+    fear_and_greed = round(float(str(fear_and_greed.get())[21:25]))
+    reply_message_YLinG=f'Good morning \n道瓊指數:{finainces("#%5EDJI")[19:]} \n費半指數:{finainces("#%5ESOX")[20:]} \n Fear & Greed Index:{source}'
+    line_bot_api.push_message(YLinG,TextSendMessage(reply_message_YLinG))
+    return "Send weekday morning message to YLinG success"
+
+@app.route("/PmAh")
+def pushmessage_wd_Ah():
+    img_url = enddistr("ETSE")
+    reply_message = f'{investor_chip("IE")}\n{investor_chip("ID")}\n{investor_chip("IA")}'
+    line_bot_api.push_message(YLinG,ImageSendMessage(original_content_url=img_url, preview_image_url=img_url))
+    
+#    line_bot_api.push_message(YLinG,TextSendMessage(reply_message))
+    return "Send after_hour image success"
 
 
 #########
@@ -104,8 +125,11 @@ def handle_message(event):
     elif 'T' in msg[0] or 't' in msg[0]:
         message =TextSendMessage(GETUserId(event)) 
         line_bot_api.reply_message(event.reply_token, message)
-    elif 'W' in msg[0] or 'w' in msg[0]:
+    elif 'W' in msg[0] :
         message =TextSendMessage(get_weather(msg))
+        line_bot_api.reply_message(event.reply_token, message)
+    elif  'w' in msg[0]:
+        message =TextSendMessage(get_global_weather(msg))
         line_bot_api.reply_message(event.reply_token, message)
     elif 'UpDate'in msg:
         message =TextSendMessage(renew_data()) 
